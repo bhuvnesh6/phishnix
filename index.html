@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Phishnix – Modern PCB sourcing and electronics manufacturing partner for EV, IoT and robotics startups."/>
+<meta name="keywords" content="PCB manufacturing, PCBA, PCB prototyping, EV electronics, IoT hardware, component sourcing"/>
+<meta name="author" content="Bhuvnesh Raghav"/>
+<title>Phishnix — Engineering the Future of Intelligent Hardware</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+/* ===== RESET & VARIABLES ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --white:#ffffff;
+  --off:#f7f8fa;
+  --off2:#f0f2f6;
+  --ink:#0b0f14;
+  --ink2:#2a3340;
+  --ink3:#5a6778;
+  --electric:#1a6fff;
+  --electric-light:#e8f0ff;
+  --electric-mid:#c2d5ff;
+  --teal:#00b4a6;
+  --teal-light:#e6f9f7;
+  --border:#e2e6ef;
+  --border-strong:#ccd3e0;
+  --font-display:'Italiana',serif;
+  --font-editorial:'Cormorant Garamond',serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.08),0 2px 6px rgba(0,0,0,0.05);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.1),0 4px 12px rgba(0,0,0,0.06);
+  --shadow-electric:0 8px 32px rgba(26,111,255,0.18),0 2px 8px rgba(26,111,255,0.1);
+  --r:10px;
+  --r-lg:18px;
+  --r-xl:28px;
+  --transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+body{background:var(--white);color:var(--ink);font-family:var(--font-body);overflow-x:hidden;cursor:none}
+
+/* ===== LOADER ===== */
+#loader{
+  position:fixed;inset:0;background:var(--white);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;
+  z-index:99999;
+}
+.loader-wordmark{font-family:var(--font-display);font-size:2.8rem;color:var(--ink);letter-spacing:6px;animation:fadeUp 0.5s ease forwards}
+.loader-line{width:180px;height:1.5px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:4px}
+.loader-fill{height:100%;background:linear-gradient(90deg,var(--electric),var(--teal));width:0;animation:lfill 0.9s ease forwards}
+.loader-sub{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:3px;color:var(--ink3);text-transform:uppercase;animation:fadeUp 0.5s 0.2s ease both}
+@keyframes lfill{to{width:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ===== SCROLL PROGRESS ===== */
+#sp{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--electric),var(--teal));z-index:10000;width:0;transition:width 0.08s linear}
+
+/* ===== CUSTOM CURSOR ===== */
+#cur{position:fixed;width:8px;height:8px;background:var(--electric);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+#cur-ring{position:fixed;width:32px;height:32px;border:1.5px solid rgba(26,111,255,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .15s,height .15s}
+
+/* ===== NAVBAR ===== */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:20px 0;transition:var(--transition);
+}
+#nav.scrolled{
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:14px 0;
+  box-shadow:var(--shadow-sm);
+}
+.nav-wrap{max-width:1160px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+.n-logo{
+  font-family:var(--font-display);font-size:1.5rem;letter-spacing:4px;
+  color:var(--ink);text-decoration:none;
+}
+.n-logo em{color:var(--electric);font-style:normal}
+.n-links{display:flex;align-items:center;gap:36px;list-style:none}
+.n-links a{
+  font-family:var(--font-mono);font-size:0.72rem;letter-spacing:1.5px;
+  color:var(--ink3);text-decoration:none;text-transform:uppercase;transition:color .25s;
+}
+.n-links a:hover{color:var(--electric)}
+.n-cta{
+  background:var(--electric);color:var(--white)!important;
+  padding:9px 22px;border-radius:6px;
+  box-shadow:0 4px 14px rgba(26,111,255,0.25);
+  transition:var(--transition)!important;
+}
+.n-cta:hover{background:#1258e0!important;box-shadow:var(--shadow-electric)!important;transform:translateY(-1px)}
+#ham{display:none;flex-direction:column;gap:5px;cursor:pointer}
+#ham span{width:22px;height:1.5px;background:var(--ink);display:block;transition:var(--transition)}
+#ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+#ham.open span:nth-child(2){opacity:0}
+#ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+#mob{
+  position:fixed;top:0;right:-100%;width:270px;height:100vh;
+  background:var(--white);border-left:1px solid var(--border);
+  z-index:999;padding:80px 28px 28px;
+  transition:right .4s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;gap:4px;
+  box-shadow:-4px 0 24px rgba(0,0,0,0.08);
+}
+#mob.open{right:0}
+#mob a{
+  font-family:var(--font-mono);font-size:0.78rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--ink3);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--border);
+  transition:var(--transition);
+}
+#mob a:hover{color:var(--electric);padding-left:8px}
+
+/* ===== UTILITY ===== */
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+.sec{padding:100px 0;position:relative;z-index:1}
+.sec-alt{background:var(--off)}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--electric);background:var(--electric-light);
+  padding:6px 14px;border-radius:50px;border:1px solid var(--electric-mid);
+  margin-bottom:18px;
+}
+.chip::before{content:'';width:5px;height:5px;background:var(--electric);border-radius:50%}
+.h1{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,5rem);line-height:1.05;color:var(--ink);margin-bottom:18px}
+.h2{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3.4rem);line-height:1.1;color:var(--ink);margin-bottom:14px}
+.h3{font-family:var(--font-editorial);font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:8px}
+.sub{font-size:0.95rem;color:var(--ink3);line-height:1.75;max-width:560px}
+.sec-head{margin-bottom:60px}
+.sec-head.c{text-align:center}.sec-head.c .sub{margin:0 auto}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-l.on{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-r.on{opacity:1;transform:none}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;
+  padding:14px 30px;border-radius:7px;cursor:pointer;border:none;
+  text-decoration:none;transition:var(--transition);font-weight:400;
+}
+.btn-solid{background:var(--electric);color:var(--white);box-shadow:0 4px 16px rgba(26,111,255,0.22)}
+.btn-solid:hover{background:#1258e0;box-shadow:var(--shadow-electric);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--electric);border:1.5px solid var(--electric-mid)}
+.btn-ghost:hover{background:var(--electric-light);border-color:var(--electric);transform:translateY(-2px)}
+
+/* ===== HERO ===== */
+#hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden;background:var(--white)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero-eyebrow{
+  font-family:var(--font-editorial);font-style:italic;font-size:1rem;
+  color:var(--electric);margin-bottom:10px;
+}
+.hero-title{
+  font-family:var(--font-display);font-size:clamp(3rem,5.5vw,5.2rem);
+  line-height:1.02;color:var(--ink);margin-bottom:20px;letter-spacing:1px;
+}
+.hero-title em{color:var(--electric);font-style:normal}
+.hero-desc{font-size:0.97rem;color:var(--ink3);line-height:1.8;margin-bottom:36px;max-width:440px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.hero-pills{display:flex;gap:12px;flex-wrap:wrap}
+.pill{
+  display:flex;align-items:center;gap:8px;
+  background:var(--off);border:1px solid var(--border);
+  padding:9px 16px;border-radius:50px;
+  font-family:var(--font-mono);font-size:0.67rem;letter-spacing:1px;color:var(--ink3);
+  transition:var(--transition);
+}
+.pill:hover{border-color:var(--electric);color:var(--electric);background:var(--electric-light)}
+.pill-dot{width:6px;height:6px;background:var(--electric);border-radius:50%;flex-shrink:0}
+
+/* Hero right - image stack */
+.hero-right{position:relative}
+.img-main{
+  width:100%;border-radius:var(--r-xl);overflow:hidden;
+  border:1px solid var(--border);box-shadow:var(--shadow-lg);
+  position:relative;
+}
+.img-main img{width:100%;height:440px;object-fit:cover;display:block}
+.img-float{
+  position:absolute;bottom:-24px;left:-24px;
+  width:200px;border-radius:var(--r-lg);overflow:hidden;
+  border:3px solid var(--white);box-shadow:var(--shadow-lg);
+}
+.img-float img{width:100%;height:140px;object-fit:cover;display:block}
+.status-badge{
+  position:absolute;top:20px;right:20px;
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);
+  border:1px solid var(--border);border-radius:8px;
+  padding:10px 14px;display:flex;align-items:center;gap:8px;
+  box-shadow:var(--shadow-md);
+}
+.status-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;flex-shrink:0;animation:pulse-dot 1.8s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+.status-badge span{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:1px;color:var(--ink2)}
+
+/* ===== TRUST STRIP ===== */
+#trust{padding:60px 0;background:var(--ink);overflow:hidden}
+.trust-inner{display:flex;gap:48px;flex-wrap:wrap;justify-content:center;align-items:center}
+.t-item{text-align:center}
+.t-num{
+  font-family:var(--font-display);font-size:2.6rem;color:var(--white);
+  display:block;margin-bottom:4px;line-height:1;
+}
+.t-num em{color:var(--electric);font-style:normal}
+.t-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.4)}
+.t-div{width:1px;height:48px;background:rgba(255,255,255,0.1)}
+
+/* ===== ABOUT ===== */
+#about{padding:100px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-imgs{position:relative}
+.about-img-main{width:100%;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border)}
+.about-img-main img{width:100%;height:480px;object-fit:cover;display:block}
+.about-img-sm{
+  position:absolute;bottom:-28px;right:-28px;
+  width:180px;border-radius:var(--r-lg);overflow:hidden;
+  border:3px solid var(--white);box-shadow:var(--shadow-lg);
+}
+.about-img-sm img{width:100%;height:140px;object-fit:cover;display:block}
+.about-code{
+  position:absolute;top:24px;left:24px;
+  background:rgba(11,15,20,0.88);backdrop-filter:blur(10px);
+  border-radius:8px;padding:12px 16px;
+  font-family:var(--font-mono);font-size:0.62rem;line-height:1.9;
+  color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1);
+}
+.about-code .k{color:#7dd3fc}.about-code .s{color:#86efac}.about-code .v{color:#fbbf24}
+.feats{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.feat{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px 18px;border-radius:var(--r);border:1px solid var(--border);
+  background:var(--off);transition:var(--transition);
+}
+.feat:hover{border-color:var(--electric-mid);background:var(--electric-light);transform:translateX(4px)}
+.feat-icon{
+  width:36px;height:36px;border-radius:8px;flex-shrink:0;
+  background:var(--electric-light);border:1px solid var(--electric-mid);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.feat h4{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:1px;color:var(--electric);margin-bottom:3px;text-transform:uppercase}
+.feat p{font-size:0.82rem;color:var(--ink3);line-height:1.6}
+
+/* ===== SERVICES ===== */
+#services{background:var(--off);padding:100px 0}
+.svcs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.svc{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:28px 22px;
+  transition:var(--transition);position:relative;overflow:hidden;
+}
+.svc::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--electric),var(--teal));
+  transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
+}
+.svc:hover{box-shadow:var(--shadow-electric);border-color:var(--electric-mid);transform:translateY(-5px)}
+.svc:hover::after{transform:scaleX(1)}
+.svc-ico{
+  width:44px;height:44px;border-radius:10px;
+  background:var(--electric-light);border:1px solid var(--electric-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;margin-bottom:16px;transition:var(--transition);
+}
+.svc:hover .svc-ico{background:var(--electric);border-color:var(--electric)}
+.svc h3{font-family:var(--font-body);font-weight:500;font-size:0.9rem;color:var(--ink);margin-bottom:8px;line-height:1.4}
+.svc p{font-size:0.78rem;color:var(--ink3);line-height:1.65}
+.svc-tag{
+  display:inline-block;margin-top:14px;
+  font-family:var(--font-mono);font-size:0.6rem;letter-spacing:1.5px;
+  color:var(--electric);background:var(--electric-light);
+  border:1px solid var(--electric-mid);padding:3px 9px;border-radius:50px;
+  text-transform:uppercase;
+}
+
+/* ===== PCB IMAGE STRIP ===== */
+#img-strip{padding:0;overflow:hidden;background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.strip-track{display:flex;gap:0;animation:slide-strip 28s linear infinite}
+.strip-track:hover{animation-play-state:paused}
+.strip-item{flex-shrink:0;width:280px;height:200px;overflow:hidden;position:relative}
+.strip-item img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.7) brightness(0.95);transition:filter .35s}
+.strip-item:hover img{filter:saturate(1.1) brightness(1)}
+@keyframes slide-strip{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== INDUSTRIES ===== */
+#industries{padding:100px 0;background:var(--off)}
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ind-card{
+  padding:28px 22px;border-radius:var(--r-lg);
+  background:var(--white);border:1px solid var(--border);
+  text-align:center;transition:var(--transition);
+}
+.ind-card:hover{box-shadow:var(--shadow-md);border-color:var(--electric-mid);transform:translateY(-4px)}
+.ind-ico{font-size:2rem;margin-bottom:12px;display:block}
+.ind-card h3{font-family:var(--font-body);font-weight:500;font-size:0.88rem;color:var(--ink);margin-bottom:6px}
+.ind-card p{font-size:0.76rem;color:var(--ink3);line-height:1.6}
+
+/* ===== WHY ===== */
+#why{padding:100px 0}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.why-card{
+  padding:28px;border-radius:var(--r-lg);
+  border:1px solid var(--border);background:var(--white);
+  transition:var(--transition);
+}
+.why-card:hover{border-color:var(--electric-mid);box-shadow:var(--shadow-electric);transform:translateY(-4px)}
+.why-n{
+  font-family:var(--font-display);font-size:2rem;
+  color:var(--electric-mid);display:block;margin-bottom:10px;line-height:1;
+}
+.why-card h3{font-family:var(--font-body);font-weight:500;font-size:0.9rem;color:var(--ink);margin-bottom:8px}
+.why-card p{font-size:0.82rem;color:var(--ink3);line-height:1.7}
+
+/* ===== PROCESS ===== */
+#process{padding:100px 0;background:var(--ink);overflow:hidden;position:relative}
+#process .h2{color:var(--white)}
+#process .sub{color:rgba(255,255,255,0.45)}
+#process .chip{background:rgba(26,111,255,0.12);border-color:rgba(26,111,255,0.25);color:#7dd3fc}
+.proc-line{display:flex;position:relative;gap:0;margin-top:24px}
+.proc-line::before{
+  content:'';position:absolute;top:36px;left:5%;right:5%;
+  height:1px;background:linear-gradient(90deg,transparent,rgba(26,111,255,0.3),rgba(0,180,166,0.3),transparent);
+}
+.proc-step{flex:1;text-align:center;padding:0 12px}
+.proc-dot{
+  width:72px;height:72px;border-radius:50%;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;font-size:1.4rem;
+  position:relative;z-index:1;transition:var(--transition);
+}
+.proc-step:hover .proc-dot{background:rgba(26,111,255,0.15);border-color:rgba(26,111,255,0.5);transform:scale(1.1)}
+.proc-num{
+  position:absolute;top:-7px;right:-7px;
+  width:20px;height:20px;background:var(--electric);border-radius:50%;
+  font-family:var(--font-mono);font-size:0.58rem;color:var(--white);
+  display:flex;align-items:center;justify-content:center;font-weight:400;
+}
+.proc-step h3{font-family:var(--font-body);font-weight:500;font-size:0.85rem;color:rgba(255,255,255,0.85);margin-bottom:8px}
+.proc-step p{font-size:0.75rem;color:rgba(255,255,255,0.38);line-height:1.65}
+
+/* ===== MISSION VISION ===== */
+#mission{padding:100px 0}
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.mv-card{
+  padding:44px 38px;border-radius:var(--r-xl);
+  border:1px solid var(--border);background:var(--off);
+  position:relative;overflow:hidden;transition:var(--transition);
+}
+.mv-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.mv-card.m{border-color:var(--electric-mid);background:var(--electric-light)}
+.mv-card.v{border-color:#b2f0eb;background:var(--teal-light)}
+.mv-card::before{content:'';position:absolute;top:-50px;right:-50px;width:160px;height:160px;border-radius:50%;opacity:0.07}
+.mv-card.m::before{background:var(--electric)}
+.mv-card.v::before{background:var(--teal)}
+.mv-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
+.mv-card.m .mv-label{color:var(--electric)}
+.mv-card.v .mv-label{color:var(--teal)}
+.mv-card h3{font-family:var(--font-editorial);font-size:1.55rem;font-weight:600;line-height:1.3;color:var(--ink);margin-bottom:18px}
+.mv-card p{font-size:0.88rem;color:var(--ink3);line-height:1.82}
+
+/* ===== FOUNDER ===== */
+#founder{padding:100px 0;background:var(--off)}
+.founder-card{
+  max-width:820px;margin:0 auto;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:48px;
+  display:flex;gap:48px;align-items:flex-start;
+  box-shadow:var(--shadow-md);
+}
+.founder-img{
+  flex-shrink:0;width:200px;border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--border);box-shadow:var(--shadow-md);
+}
+.founder-img img{width:100%;height:240px;object-fit:cover;display:block}
+.f-name{font-family:var(--font-display);font-size:2rem;color:var(--ink);margin-bottom:4px}
+.f-role{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--electric);margin-bottom:18px}
+.f-bio{font-size:0.9rem;color:var(--ink3);line-height:1.82;margin-bottom:20px}
+.f-tags{display:flex;gap:8px;flex-wrap:wrap}
+.f-tag{
+  font-family:var(--font-mono);font-size:0.62rem;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--ink3);
+  background:var(--off);border:1px solid var(--border);
+  padding:5px 12px;border-radius:50px;
+}
+
+/* ===== CONTACT ===== */
+#contact{padding:100px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:start}
+.contact-info h2{font-family:var(--font-display);font-size:2rem;color:var(--ink);margin-bottom:14px;line-height:1.2}
+.contact-info p{font-size:0.9rem;color:var(--ink3);line-height:1.78;margin-bottom:28px}
+.c-link{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--font-mono);font-size:0.75rem;letter-spacing:1px;
+  color:var(--ink3);text-decoration:none;
+  padding:13px 0;border-bottom:1px solid var(--border);
+  transition:var(--transition);
+}
+.c-link:hover{color:var(--electric);padding-left:6px}
+.c-link-ico{
+  width:34px;height:34px;border-radius:8px;background:var(--electric-light);
+  border:1px solid var(--electric-mid);display:flex;align-items:center;justify-content:center;
+  font-size:0.9rem;flex-shrink:0;
+}
+.wa-btn{
+  display:inline-flex;align-items:center;gap:10px;margin-top:22px;
+  padding:13px 24px;border-radius:8px;
+  background:#f0fdf4;border:1px solid #bbf7d0;
+  color:#15803d;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:1.5px;
+  text-decoration:none;text-transform:uppercase;transition:var(--transition);
+}
+.wa-btn:hover{background:#dcfce7;transform:translateY(-2px);box-shadow:0 4px 14px rgba(34,197,94,0.15)}
+.form-wrap{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:38px;box-shadow:var(--shadow-sm);
+}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:7px}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:var(--off);border:1px solid var(--border);
+  border-radius:7px;padding:11px 14px;color:var(--ink);
+  font-family:var(--font-body);font-size:0.86rem;outline:none;transition:var(--transition);
+  -webkit-appearance:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--electric);background:var(--electric-light);box-shadow:0 0 0 3px rgba(26,111,255,0.08)}
+.fg select option{background:var(--white);color:var(--ink)}
+.fg textarea{min-height:100px;resize:vertical}
+.form-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+
+/* ===== FAQ ===== */
+#faq{padding:100px 0;background:var(--off)}
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.faq-item{border-radius:var(--r);border:1px solid var(--border);background:var(--white);overflow:hidden;transition:border-color .25s}
+.faq-item.open{border-color:var(--electric-mid)}
+.faq-q{
+  padding:18px 22px;display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;font-size:0.9rem;color:var(--ink);font-weight:500;gap:16px;transition:color .25s;
+}
+.faq-item.open .faq-q{color:var(--electric)}
+.faq-ico{
+  width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-family:var(--font-mono);font-size:0.9rem;color:var(--electric);transition:transform .3s;
+}
+.faq-item.open .faq-ico{transform:rotate(45deg);border-color:var(--electric)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 22px}
+.faq-a.open{max-height:300px;padding:0 22px 18px}
+.faq-a p{font-size:0.84rem;color:var(--ink3);line-height:1.78}
+
+/* ===== FOOTER ===== */
+#footer{padding:64px 0 28px;background:var(--ink);border-top:1px solid rgba(255,255,255,0.06)}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:48px;margin-bottom:48px}
+.ft-logo{font-family:var(--font-display);font-size:1.4rem;letter-spacing:4px;color:var(--white);margin-bottom:12px}
+.ft-logo em{color:var(--electric);font-style:normal}
+.ft-brand p{font-size:0.8rem;color:rgba(255,255,255,0.35);line-height:1.75;max-width:240px;margin-bottom:20px}
+.ft-socials{display:flex;gap:8px}
+.ft-s{
+  width:34px;height:34px;border-radius:7px;background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;text-decoration:none;color:rgba(255,255,255,0.4);transition:var(--transition);
+}
+.ft-s:hover{background:var(--electric);border-color:var(--electric);color:var(--white)}
+.ft-col h4{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:18px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-col ul li a{font-size:0.8rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color .25s}
+.ft-col ul li a:hover{color:rgba(255,255,255,0.85)}
+.ft-contact{font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:2}
+.ft-contact a{color:rgba(26,111,255,0.85);text-decoration:none;transition:color .25s}
+.ft-contact a:hover{color:var(--electric)}
+.ft-div{height:1px;background:rgba(255,255,255,0.07);margin-bottom:24px}
+.ft-bot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-copy{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:1px;color:rgba(255,255,255,0.25)}
+.ft-copy em{color:var(--electric);font-style:normal}
+.ft-tag{font-family:var(--font-editorial);font-style:italic;font-size:0.85rem;color:rgba(255,255,255,0.2)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1050px){
+  .svcs-grid{grid-template-columns:repeat(2,1fr)}
+  .ind-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-top{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:880px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .about-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .mv-grid{grid-template-columns:1fr}
+  .proc-line{flex-direction:column;gap:28px}
+  .proc-line::before{display:none}
+  .founder-card{flex-direction:column}
+  .founder-img{width:100%;max-width:220px}
+}
+@media(max-width:640px){
+  .n-links{display:none}
+  #ham{display:flex}
+  #mob{display:flex}
+  .svcs-grid{grid-template-columns:1fr}
+  .ind-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr}
+  .hero-btns,.hero-pills{flex-direction:column;align-items:flex-start}
+  body{cursor:auto}
+  #cur,#cur-ring{display:none}
+  .trust-inner{gap:28px}
+  .t-div{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-wordmark">PHISHNIX</div>
+  <div class="loader-line"><div class="loader-fill"></div></div>
+  <div class="loader-sub">Initializing</div>
+</div>
+
+<!-- Scroll progress -->
+<div id="sp"></div>
+
+<!-- Custom cursor -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a href="#hero" class="n-logo">PHISH<em>NIX</em></a>
+    <ul class="n-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#founder">Founder</a></li>
+      <li><a href="#contact" class="n-cta">Get Quote</a></li>
+    </ul>
+    <div id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div id="mob">
+  <a href="#about" onclick="closeMob()">About</a>
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#industries" onclick="closeMob()">Industries</a>
+  <a href="#why" onclick="closeMob()">Why Us</a>
+  <a href="#process" onclick="closeMob()">Process</a>
+  <a href="#founder" onclick="closeMob()">Founder</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow reveal">PCB &amp; Electronics Manufacturing Partner</div>
+        <h1 class="hero-title reveal" style="transition-delay:.08s">
+          Engineering<br>the Future of<br><em>Intelligent Hardware</em>
+        </h1>
+        <p class="hero-desc reveal" style="transition-delay:.16s">
+          Modern PCB sourcing, PCBA coordination, and manufacturing support — built for EV startups, IoT innovators, and embedded hardware teams.
+        </p>
+        <div class="hero-btns reveal" style="transition-delay:.22s">
+          <a href="#contact" class="btn btn-solid">⚡ Request Quote</a>
+          <a href="mailto:info@phishnix.site" class="btn btn-ghost">✉ Talk to Us</a>
+        </div>
+        <div class="hero-pills reveal" style="transition-delay:.28s">
+          <div class="pill"><div class="pill-dot"></div>Fast Turnaround</div>
+          <div class="pill"><div class="pill-dot"></div>Prototype → Production</div>
+          <div class="pill"><div class="pill-dot"></div>EV &amp; IoT Focused</div>
+        </div>
+      </div>
+      <div class="hero-right reveal-r" style="transition-delay:.12s">
+        <div class="img-main">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" alt="PCB circuit board"/>
+          <div class="status-badge">
+            <div class="status-dot"></div>
+            <span>Systems Active — Production Ready</span>
+          </div>
+        </div>
+        <div class="img-float">
+          <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=400&q=80" alt="Electronics manufacturing"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== 
+<section id="trust">
+  <div class="wrap">
+    <div class="trust-inner">
+      <div class="t-item reveal">
+        <span class="t-num"><em data-target="48">0</em>h</span>
+        <span class="t-label">Fastest Turnaround</span>
+      </div>
+      <div class="t-div"></div>
+      <div class="t-item reveal" style="transition-delay:.08s">
+        <span class="t-num"><em data-target="100">0</em>+</span>
+        <span class="t-label">Projects Delivered</span>
+      </div>
+      <div class="t-div"></div>
+      <div class="t-item reveal" style="transition-delay:.16s">
+        <span class="t-num"><em data-target="8">0</em>+</span>
+        <span class="t-label">Industries Served</span>
+      </div>
+      <div class="t-div"></div>
+      <div class="t-item reveal" style="transition-delay:.24s">
+        <span class="t-num"><em data-target="98">0</em>%</span>
+        <span class="t-label">Client Satisfaction</span>
+      </div>
+      <div class="t-div"></div>
+      <div class="t-item reveal" style="transition-delay:.32s">
+        <span class="t-num"><em data-target="5">0</em>+</span>
+        <span class="t-label">Layer PCBs Supported</span>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+<!-- ===== PCB IMAGE STRIP ===== -->
+<div id="img-strip">
+  <div class="strip-track" id="strip">
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=70" alt="PCB"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600&q=70" alt="Electronics"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=70" alt="Circuit board"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=70" alt="PCB manufacturing"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70" alt="Embedded systems"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=70" alt="Hardware startup"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=70" alt="Industrial tech"/></div>
+    <!-- duplicate for loop -->
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=70" alt="PCB"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600&q=70" alt="Electronics"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=70" alt="Circuit board"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=70" alt="PCB manufacturing"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=70" alt="Embedded systems"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=70" alt="Hardware startup"/></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=70" alt="Industrial tech"/></div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="sec">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-imgs reveal-l">
+        <div class="about-img-main">
+          <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80" alt="PCB assembly" loading="lazy"/>
+        </div>
+        <div class="about-img-sm">
+          <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=400&q=80" alt="Embedded systems" loading="lazy"/>
+        </div>
+        <div class="about-code">
+          <span><span class="k">status</span>: <span class="s">"active"</span></span><br>
+          <span><span class="k">mode</span>: <span class="s">"pcb_sourcing"</span></span><br>
+          <span><span class="k">queue</span>: <span class="v">ready</span></span>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="chip">About Phishnix</div>
+        <h2 class="h2">Your Modern PCB &amp; <span style="color:var(--electric)">PCBA Partner</span></h2>
+        <p class="sub" style="margin-bottom:28px">
+          Phishnix is a modern PCB sourcing and PCBA coordination company built to accelerate EV, IoT, robotics, and embedded hardware startups — bridging the gap between design and production.
+        </p>
+        <div class="feats">
+          <div class="feat">
+            <div class="feat-icon">⚙️</div>
+            <div>
+              <h4>Rapid Prototyping</h4>
+              <p>From Gerber files to physical boards in days. Optimised for fast hardware iteration cycles.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">📦</div>
+            <div>
+              <h4>PCB Sourcing &amp; Assembly</h4>
+              <p>Full-service PCB procurement and PCBA coordination through our trusted manufacturer network.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">🔩</div>
+            <div>
+              <h4>Component Sourcing</h4>
+              <p>ICs, passives, connectors, and specialty parts from verified distributors at competitive pricing.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">📈</div>
+            <div>
+              <h4>Scalable Manufacturing</h4>
+              <p>Grow from 10-unit prototypes to full production runs without switching your manufacturing partner.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head c">
+      <div class="chip">What We Do</div>
+      <h2 class="h2">Our <span style="color:var(--electric)">Core Services</span></h2>
+      <p class="sub">End-to-end support across the electronics hardware lifecycle — from first prototype to scaled production.</p>
+    </div>
+    <div class="svcs-grid">
+      <div class="svc reveal"><div class="svc-ico">🔬</div><h3>PCB Prototyping</h3><p>Rapid PCB fabrication from your Gerber files. Single to multi-layer boards with tight tolerances and fast delivery.</p><span class="svc-tag">Fast Fab</span></div>
+      <div class="svc reveal" style="transition-delay:.06s"><div class="svc-ico">🛠️</div><h3>PCB Assembly (PCBA)</h3><p>SMT, through-hole, and mixed assembly with full BOM coordination and QC inspection.</p><span class="svc-tag">SMT / THT</span></div>
+      <div class="svc reveal" style="transition-delay:.12s"><div class="svc-ico">🔩</div><h3>Component Sourcing</h3><p>ICs, passives, connectors, and specialty components sourced from verified suppliers worldwide.</p><span class="svc-tag">BOM Support</span></div>
+      <div class="svc reveal" style="transition-delay:.18s"><div class="svc-ico">🚗</div><h3>EV Electronics Support</h3><p>BMS, motor controllers, and power electronics sourcing and assembly for EV applications.</p><span class="svc-tag">EV Focused</span></div>
+      <div class="svc reveal" style="transition-delay:.06s"><div class="svc-ico">📡</div><h3>IoT Hardware Development</h3><p>RF modules, sensor boards, wireless hardware, and embedded firmware coordination.</p><span class="svc-tag">IoT Ready</span></div>
+      <div class="svc reveal" style="transition-delay:.12s"><div class="svc-ico">📦</div><h3>Small Batch Manufacturing</h3><p>Low-MOQ production runs for startups validating products. Flexible batches from 10 to 1000 units.</p><span class="svc-tag">Low MOQ</span></div>
+      <div class="svc reveal" style="transition-delay:.18s"><div class="svc-ico">⚡</div><h3>Rapid Turnaround PCB</h3><p>Express manufacturing for time-critical projects. 24–72 hour PCB fabrication available on request.</p><span class="svc-tag">Express</span></div>
+      <div class="svc reveal" style="transition-delay:.06s"><div class="svc-ico">💡</div><h3>Hardware Startup Support</h3><p>DFM reviews, supply chain strategy, and manufacturing guidance for early-stage hardware teams.</p><span class="svc-tag">Full Support</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INDUSTRIES ===== -->
+<section id="industries" class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head c">
+      <div class="chip">Industries</div>
+      <h2 class="h2">Industries <span style="color:var(--electric)">We Serve</span></h2>
+      <p class="sub">Phishnix supports diverse sectors where precision hardware and fast delivery are non-negotiable.</p>
+    </div>
+    <div class="ind-grid">
+      <div class="ind-card reveal"><span class="ind-ico">⚡</span><h3>EV Startups</h3><p>BMS, power management, and motor control electronics for electric vehicles.</p></div>
+      <div class="ind-card reveal" style="transition-delay:.06s"><span class="ind-ico">📡</span><h3>IoT Companies</h3><p>Connected devices, sensors, and wireless hardware for smart applications.</p></div>
+      <div class="ind-card reveal" style="transition-delay:.12s"><span class="ind-ico">🤖</span><h3>Robotics</h3><p>Control boards, servo drivers, and vision systems for robotic platforms.</p></div>
+      <div class="ind-card reveal" style="transition-delay:.18s"><span class="ind-ico">💻</span><h3>Embedded Systems</h3><p>Custom microcontroller boards and firmware-ready PCB manufacturing.</p></div>
+      <div class="ind-card reveal" style="transition-delay:.06s"><span class="ind-ico">🏭</span><h3>Industrial Automation</h3><p>Reliable PCBs for PLCs, sensors, and industrial control applications.</p></div>
+      <div class="ind-card reveal" style="transition-delay:.12s"><span class="ind-ico">🛸</span><h3>Drone Technology</h3><p>Flight controllers, ESCs, and communication boards for UAV systems.</p></div>
+      <div class="ind-card reveal" style="transition-delay:.18s"><span class="ind-ico">📱</span><h3>Smart Devices</h3><p>Consumer electronics, wearables, and smart home hardware development.</p></div>
+      <div class="ind-card reveal" style="transition-delay:.06s"><span class="ind-ico">🔋</span><h3>Energy Tech</h3><p>Energy storage, solar electronics, and power conversion hardware.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY ===== -->
+<section id="why" class="sec">
+  <div class="wrap">
+    <div class="sec-head c">
+      <div class="chip">Competitive Edge</div>
+      <h2 class="h2">Why Choose <span style="color:var(--electric)">Phishnix</span></h2>
+      <p class="sub">We're not just a vendor — we're a technical partner invested in your hardware success.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal"><span class="why-n">01</span><h3>Fast Communication</h3><p>Same-day responses, clear timelines, and proactive updates at every stage of your project.</p></div>
+      <div class="why-card reveal" style="transition-delay:.08s"><span class="why-n">02</span><h3>Startup-Focused Approach</h3><p>We understand resource constraints and move-fast culture. Built for teams that can't afford delays.</p></div>
+      <div class="why-card reveal" style="transition-delay:.16s"><span class="why-n">03</span><h3>Reliable Sourcing Network</h3><p>Pre-vetted manufacturers and component distributors to avoid quality surprises.</p></div>
+      <div class="why-card reveal" style="transition-delay:.08s"><span class="why-n">04</span><h3>Flexible Quantities</h3><p>From 5-unit MVP prototypes to 5000-unit production orders — we scale with you.</p></div>
+      <div class="why-card reveal" style="transition-delay:.16s"><span class="why-n">05</span><h3>Modern Digital Workflow</h3><p>Fast quoting, online coordination, and transparent project tracking end to end.</p></div>
+      <div class="why-card reveal" style="transition-delay:.24s"><span class="why-n">06</span><h3>Technical Understanding</h3><p>We speak hardware. Our team understands DFM, BOM, Gerbers, and manufacturing constraints.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="process" class="sec">
+  <div class="wrap">
+    <div class="sec-head c">
+      <div class="chip">How It Works</div>
+      <h2 class="h2">Our <span style="color:#60a5fa">Process</span></h2>
+      <p class="sub" style="max-width:500px;margin:0 auto">A streamlined, transparent workflow from requirement to delivery.</p>
+    </div>
+    <div class="proc-line">
+      <div class="proc-step reveal">
+        <div class="proc-dot"><span>📋</span><span class="proc-num">1</span></div>
+        <h3>Submit Requirement</h3>
+        <p>Share your Gerber files, BOM, and project specs through our enquiry form.</p>
+      </div>
+      <div class="proc-step reveal" style="transition-delay:.1s">
+        <div class="proc-dot"><span>💬</span><span class="proc-num">2</span></div>
+        <h3>Review &amp; Quotation</h3>
+        <p>Our team reviews your files, clarifies requirements, and sends a detailed quote.</p>
+      </div>
+      <div class="proc-step reveal" style="transition-delay:.2s">
+        <div class="proc-dot"><span>⚙️</span><span class="proc-num">3</span></div>
+        <h3>Manufacturing</h3>
+        <p>We coordinate production with our vetted manufacturer network on your behalf.</p>
+      </div>
+      <div class="proc-step reveal" style="transition-delay:.3s">
+        <div class="proc-dot"><span>🔍</span><span class="proc-num">4</span></div>
+        <h3>Quality Check</h3>
+        <p>Boards and assemblies undergo inspection before packaging and dispatch.</p>
+      </div>
+      <div class="proc-step reveal" style="transition-delay:.4s">
+        <div class="proc-dot"><span>🚚</span><span class="proc-num">5</span></div>
+        <h3>Delivery</h3>
+        <p>Fast, tracked shipping to your location with full post-delivery support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MISSION / VISION ===== -->
+<section id="mission" class="sec">
+  <div class="wrap">
+    <div class="sec-head c">
+      <div class="chip">Purpose</div>
+      <h2 class="h2">Mission &amp; <span style="color:var(--electric)">Vision</span></h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card m reveal-l">
+        <div class="mv-label">Mission</div>
+        <h3>Helping Hardware Innovators Build Faster</h3>
+        <p>We exist to remove friction from hardware development. Through reliable PCB sourcing, coordinated manufacturing, and technical partnership, Phishnix helps innovators focus on what matters — building great products.</p>
+      </div>
+      <div class="mv-card v reveal-r">
+        <div class="mv-label">Vision</div>
+        <h3>A Technology-Driven Hardware Ecosystem</h3>
+        <p>To become a modern, AI-enhanced hardware manufacturing ecosystem for EV, robotics, automation, and intelligent electronics — connecting cutting-edge software with scalable physical manufacturing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOUNDER ===== -->
+<section id="founder" class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head c">
+      <div class="chip">Leadership</div>
+      <h2 class="h2">Meet the <span style="color:var(--electric)">Founder</span></h2>
+    </div>
+    <div class="founder-card reveal">
+      <div class="founder-img">
+        <img src="/Bhuvi.png" alt="Bhuvnesh Raghav" loading="lazy"/>
+      </div>
+      <div>
+        <div class="f-name">Bhuvnesh Raghav</div>
+        <div class="f-role">Founder &amp; Director — Phishnix</div>
+        <p class="f-bio">Young technology entrepreneur focused on building modern hardware and manufacturing ecosystems that combine software intelligence, automation, electronics engineering, and scalable operations. Bhuvnesh founded Phishnix to bridge the gap between innovative hardware design and accessible, reliable manufacturing — making it easier for startups and engineers to bring products to life.</p>
+        <div class="f-tags">
+          <span class="f-tag">Hardware Entrepreneur</span>
+          <span class="f-tag">PCB &amp; PCBA</span>
+          <span class="f-tag">EV &amp; IoT</span>
+          <span class="f-tag">Manufacturing Tech</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="sec">
+  <div class="wrap">
+    <div class="sec-head c">
+      <div class="chip">Get In Touch</div>
+      <h2 class="h2">Start Your <span style="color:var(--electric)">Project</span></h2>
+      <p class="sub">Tell us about your hardware requirement and we'll respond within 24 hours.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal-l">
+        <h2 style="font-family:var(--font-display);font-size:1.7rem;color:var(--ink);margin-bottom:12px;line-height:1.2">Let's Build Something<br>Together</h2>
+        <p style="font-size:0.88rem;color:var(--ink3);line-height:1.8;margin-bottom:26px">Whether you have Gerber files ready or just a design concept, we're here to help you navigate PCB sourcing and manufacturing from day one.</p>
+        <a href="mailto:info@phishnix.site" class="c-link"><div class="c-link-ico">📧</div>info@phishnix.site</a>
+        <a href="#" class="c-link"><div class="c-link-ico">📍</div>India — Serving Globally</a>
+        <a href="https://wa.me/918920419130" target="_blank" class="wa-btn">💬 Chat on WhatsApp</a>
+      </div>
+      <div class="reveal-r">
+        <div class="form-wrap">
+          <div class="f-row">
+            <div class="fg"><label>Full Name</label><input type="text" placeholder="Your Name"/></div>
+            <div class="fg"><label>Company Name</label><input type="text" placeholder="Your Company"/></div>
+          </div>
+          <div class="f-row">
+            <div class="fg"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+            <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"/></div>
+          </div>
+          <div class="fg">
+            <label>Requirement Type</label>
+            <select>
+              <option value="">Select Requirement</option>
+              <option>PCB Prototyping</option>
+              <option>PCB Assembly (PCBA)</option>
+              <option>Component Sourcing</option>
+              <option>EV Electronics</option>
+              <option>IoT Hardware</option>
+              <option>Small Batch Production</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Message / Requirement Details</label>
+            <textarea placeholder="Describe your project, PCB specifications, quantity needed, timeline..."></textarea>
+          </div>
+          <div class="form-btns">
+            <button class="btn btn-solid" onclick="formSubmit(event)">⚡ Request Quote</button>
+            <button class="btn btn-ghost" onclick="formSubmit(event)">✉ Send Enquiry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head c">
+      <div class="chip">FAQ</div>
+      <h2 class="h2">Frequently Asked <span style="color:var(--electric)">Questions</span></h2>
+      <p class="sub">Everything you need to know about working with Phishnix.</p>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you support prototype PCB orders?<span class="faq-ico">+</span></div>
+        <div class="faq-a"><p>Yes — prototyping is our specialty. We support single-piece and small-batch prototype orders with fast turnaround, typically 3–7 days for standard specs. Express options available for urgent needs.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can you help with component sourcing?<span class="faq-ico">+</span></div>
+        <div class="faq-a"><p>Absolutely. We handle full BOM sourcing — ICs, passive components, connectors, modules, and specialty parts. We work with verified distributors to ensure quality and availability.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you support EV and IoT hardware?<span class="faq-ico">+</span></div>
+        <div class="faq-a"><p>Yes, these are core focus areas for Phishnix. We support BMS boards, motor controllers, power electronics, BLDC drivers for EV applications, and wireless/sensor hardware for IoT products.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What file formats do you accept?<span class="faq-ico">+</span></div>
+        <div class="faq-a"><p>We accept Gerber files (RS-274X), Excellon drill files, BOM in Excel/CSV, pick-and-place files, and assembly drawings in PDF. We also work with KiCad, Altium, and Eagle native formats.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you provide assembly support?<span class="faq-ico">+</span></div>
+        <div class="faq-a"><p>Yes. We offer full PCBA services including SMT, through-hole, mixed technology, BGA rework, and functional testing coordination for simple boards to complex multi-layer assemblies.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can startups work with you?<span class="faq-ico">+</span></div>
+        <div class="faq-a"><p>Phishnix is specifically built for startups. We offer flexible quantities, no large MOQ requirements, transparent pricing, and a startup-friendly process from MVP to pre-series A stages.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <div class="ft-logo">PHISH<em>NIX</em></div>
+        <p>Modern PCB sourcing and electronics manufacturing partner for EV, IoT, robotics, and embedded hardware startups.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-s" title="LinkedIn">in</a>
+          <a href="#" class="ft-s" title="Twitter">𝕏</a>
+          <a href="#" class="ft-s" title="GitHub">⌨</a>
+          <a href="mailto:info@phishnix.site" class="ft-s" title="Email">@</a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">PCB Prototyping</a></li>
+          <li><a href="#services">PCB Assembly</a></li>
+          <li><a href="#services">Component Sourcing</a></li>
+          <li><a href="#services">EV Electronics</a></li>
+          <li><a href="#services">IoT Hardware</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="#industries">EV Startups</a></li>
+          <li><a href="#industries">IoT Companies</a></li>
+          <li><a href="#industries">Robotics</a></li>
+          <li><a href="#industries">Embedded Systems</a></li>
+          <li><a href="#industries">Drone Technology</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Contact</h4>
+        <div class="ft-contact">
+          <div>📧 <a href="mailto:info@phishnix.site">info@phishnix.site</a></div>
+          <div>📍 India — Global Delivery</div>
+          <div>💬 <a href="https://wa.me/919999999999">WhatsApp Us</a></div>
+          <div style="margin-top:8px">Founder: Bhuvnesh Raghav</div>
+        </div>
+      </div>
+    </div>
+    <div class="ft-div"></div>
+    <div class="ft-bot">
+      <div class="ft-copy">© 2026 <em>Phishnix</em>. All Rights Reserved.</div>
+      <div class="ft-tag">Engineering the Future of Intelligent Hardware</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+/* --- LOADER (fast: 1s) --- */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    const L=document.getElementById('loader');
+    L.style.transition='opacity 0.4s ease';
+    L.style.opacity='0';
+    setTimeout(()=>{L.style.display='none';initReveal();initCounters()},420);
+  },1000);
+});
+
+/* --- SCROLL PROGRESS --- */
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('sp').style.width=pct+'%';
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
+});
+
+/* --- CURSOR --- */
+const dot=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*0.13;ry+=(my-ry)*0.13;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,.faq-q,.svc,.ind-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{dot.style.width='18px';dot.style.height='18px';dot.style.background='rgba(26,111,255,0.3)';ring.style.width='48px';ring.style.height='48px'});
+  el.addEventListener('mouseleave',()=>{dot.style.width='8px';dot.style.height='8px';dot.style.background='var(--electric)';ring.style.width='32px';ring.style.height='32px'});
+});
+
+/* --- REVEAL --- */
+function initReveal(){
+  const els=document.querySelectorAll('.reveal,.reveal-l,.reveal-r');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}});
+  },{threshold:0.1});
+  els.forEach(el=>obs.observe(el));
+  // Hero immediate
+  document.querySelectorAll('#hero .reveal,#hero .reveal-r').forEach(el=>el.classList.add('on'));
+}
+
+/* --- COUNTERS --- */
+function initCounters(){
+  const obs=new IntersectionObserver(entries=>{
+    if(!entries[0].isIntersecting)return;
+    document.querySelectorAll('[data-target]').forEach(el=>{
+      const t=+el.dataset.target;let c=0;
+      const step=t/50;
+      const tm=setInterval(()=>{
+        c=Math.min(c+step,t);
+        el.textContent=Math.floor(c);
+        if(c>=t)clearInterval(tm);
+      },22);
+    });
+    obs.disconnect();
+  },{threshold:0.4});
+  const ts=document.getElementById('trust');
+  if(ts)obs.observe(ts);
+}
+
+/* --- MOBILE MENU --- */
+function toggleMenu(){
+  document.getElementById('mob').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open');
+}
+function closeMob(){
+  document.getElementById('mob').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+}
+
+/* --- FAQ --- */
+function toggleFaq(el){
+  const item=el.parentElement;
+  const ans=item.querySelector('.faq-a');
+  const was=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').classList.remove('open')});
+  if(!was){item.classList.add('open');ans.classList.add('open')}
+}
+
+/* --- FORM --- */
+function formSubmit(e){
+  e.preventDefault();
+  const b=e.currentTarget;
+  const orig=b.innerHTML;
+  b.innerHTML='✓ Sent!';b.style.opacity='0.7';
+  setTimeout(()=>{b.innerHTML=orig;b.style.opacity='1'},2800);
+}
+</script>
+</body>
+</html>
